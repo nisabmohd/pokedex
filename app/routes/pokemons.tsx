@@ -1,5 +1,5 @@
 import { getAllPokemons, getPokenByName } from "@/lib/data";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Link } from "react-router";
+import { Link, useNavigation } from "react-router";
 import type { Route } from "./+types/pokemons";
 import PokemonPaginate from "@/components/paginate";
 
@@ -39,6 +39,10 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export default function PokemonsPage({ loaderData }: Route.ComponentProps) {
+  const { state } = useNavigation();
+  if (state == "loading")
+    return <div className="py-10 text-center">Loading,,,</div>;
+
   return (
     <div className="py-8 md:px-0 px-5 flex flex-col items-center">
       <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-8 mb-8">
@@ -51,12 +55,9 @@ export default function PokemonsPage({ loaderData }: Route.ComponentProps) {
                 </CardTitle>
                 <CardDescription>#000{pokemon.id}</CardDescription>
               </CardHeader>
-              <CardContent>
+              <CardContent className="min-w-96">
                 <Avatar className="w-[100%] h-80 mx-auto rounded-md">
                   <AvatarImage src={pokemon.sprites.front_shiny} />
-                  <AvatarFallback className="rounded-md text-4xl w-[100%] h-80">
-                    {pokemon.name.slice(0, 2).toUpperCase()}
-                  </AvatarFallback>
                 </Avatar>
               </CardContent>
               <CardFooter className="flex items-center gap-2 flex-wrap">
