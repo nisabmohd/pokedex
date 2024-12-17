@@ -7,23 +7,21 @@ type PgainateProps = {
 };
 
 export default function PokemonPaginate({ hasNext, hasPrev }: PgainateProps) {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = +(searchParams.get("page") ?? "1");
+
+  function move(payload: -1 | 1) {
+    setSearchParams((prev) => ({ ...prev, page: currentPage + payload }));
+  }
 
   return (
     <div className="flex items-center gap-2">
-      <Link
-        className={buttonVariants({ className: "w-24" })}
-        to={hasPrev ? `/pokemons?page=${currentPage - 1}` : "#"}
-      >
+      <Button className="w-24" disabled={!hasPrev} onClick={() => move(-1)}>
         Previous
-      </Link>
-      <Link
-        className={buttonVariants({ className: "w-24" })}
-        to={hasNext ? `/pokemons?page=${currentPage + 1}` : "#"}
-      >
+      </Button>
+      <Button className="w-24" disabled={!hasNext} onClick={() => move(1)}>
         Next
-      </Link>
+      </Button>
     </div>
   );
 }
