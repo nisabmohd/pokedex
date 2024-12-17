@@ -19,14 +19,14 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&family=Space+Grotesk:wght@300..700&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&family=Space+Mono:wght@300..700&display=swap",
   },
   { rel: "stylesheet", href: stylesheet },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

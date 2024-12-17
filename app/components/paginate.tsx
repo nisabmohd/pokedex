@@ -1,5 +1,5 @@
-import { Link, useSearchParams } from "react-router";
-import { Button, buttonVariants } from "./ui/button";
+import { useSearchParams } from "react-router";
+import { Button } from "./ui/button";
 
 type PgainateProps = {
   hasNext: boolean;

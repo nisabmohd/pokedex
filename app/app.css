@@ -3,11 +3,8 @@
 @tailwind utilities;
 
 body {
-  font-family: "Space Grotesk", sans-serif;
-
+  font-family: "Space Mono", sans-serif;
 }
-
-:root {}
 
 @layer base {
   :root {

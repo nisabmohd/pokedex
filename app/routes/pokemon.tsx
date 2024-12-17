@@ -41,13 +41,13 @@ export default function PokemonPage({
             </Avatar>
           </div>
           <div>
-            {pokemon.types.map((type) => (
+            {pokemon.types.map(({ type }) => (
               <Badge
-                key={type.type.name}
+                key={type.name}
                 variant="outline"
                 className="font-medium py-1 px-3 capitalize"
               >
-                {type.type.name}
+                {type.name}
               </Badge>
             ))}
           </div>
